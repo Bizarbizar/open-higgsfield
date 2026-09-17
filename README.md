@@ -1,7 +1,7 @@
 # OpenHiggsfield AI — Open-Source Alternative to Higgsfield AI
 
 > **The free, open-source alternative to Higgsfield AI.** Generate images and
-> videos with 32 models from one prompt bar — no closed ecosystem, no studio
+> videos with 38 models from one prompt bar — no closed ecosystem, no studio
 > subscription.
 
 ## 🌐 Try it Online — No Install Required
@@ -18,7 +18,7 @@ platform key (`id:secret`) to start generating. The studio itself is free.
 - **Free & open-source** — no studio subscription, no vendor lock-in
 - **Self-hosted** — clone it, run it, change it
 - **Your key** — generate with your own platform key
-- **32 models** — 8 image, 24 video, one catalog, one composer
+- **38 models** — 8 image, 30 video, one catalog, one composer
 
 ---
 
@@ -32,9 +32,10 @@ Next.js 16 App Router on Vercel · React 19 · plain CSS · Zustand · pnpm
 
 - **One composer for Image and Video.** A single prompt bar drives both; the
   model you pick decides image or video. `⌘/Ctrl + Enter` submits.
-- **32 models in the catalog** — 8 image, 24 video: Soul 2, Soul Cinema, Kling 3
-  (Turbo / Std / Pro / 4K / Motion), Wan, Flux, Ideogram, Recraft, LTX, MiniMax,
-  PixVerse, Grok, Qwen and more. Searchable picker.
+- **38 models in the catalog** — 8 image, 30 video: Soul 2, Soul Cinema, Seedance
+  2.5 (Edit / Extend), Seedance 2.0 (Fast / Mini), Kling 3 (Turbo / Std / Pro / 4K / Motion), Wan, Flux,
+  Ideogram, Recraft, LTX, MiniMax, PixVerse, Grok, Qwen and more. Searchable
+  picker.
 - **Per-model settings.** Aspect ratio, resolution, duration, output format,
   audio, batch size, prompt enhancement — each model declares its own allow-list
   and the studio renders exactly that. No parallel hardcoded list.
