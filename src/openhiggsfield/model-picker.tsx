@@ -81,9 +81,20 @@ export function ModelPicker({
         {/* The section label carries the count while searching — the one piece
             of merchandising the catalog can actually back up. */}
         <div className="ohf-pop-head ohf-picker-group">
-          {query
-            ? `${models.length} of ${catalog.length} ${SURFACE_LABELS[surface].toLowerCase()} models`
-            : `${SURFACE_LABELS[surface]} models`}
+          <span>
+            {query
+              ? `${models.length} of ${catalog.length} ${SURFACE_LABELS[surface].toLowerCase()} models`
+              : `${SURFACE_LABELS[surface]} models`}
+          </span>
+          <a
+            className="ohf-picker-guide"
+            href="/docs/models"
+            target="_blank"
+            rel="noreferrer"
+            title="Which model for which job — opens the guide in a new tab"
+          >
+            Guide ↗
+          </a>
         </div>
 
         {models.length === 0 && (

@@ -1,0 +1,209 @@
+/* Reading surface for the repo's Markdown guides. Inherits the studio tokens
+   from .ohf; only owns measure, rhythm and the few Markdown elements. */
+
+.ohf-doc {
+  min-height: 100dvh;
+  padding: 0 20px 96px;
+}
+
+.ohf-doc-nav {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 14px 0;
+  background: linear-gradient(var(--bg) 80%, transparent);
+  font-size: 13px;
+}
+
+.ohf-doc-back,
+.ohf-doc-tab {
+  color: var(--tx3);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: color 160ms var(--ease), background 160ms var(--ease);
+}
+
+.ohf-doc-back:hover,
+.ohf-doc-tab:hover {
+  color: var(--tx);
+  background: var(--s2);
+}
+
+.ohf-doc-tabs {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.ohf-doc-tab[aria-current="page"] {
+  color: var(--accent);
+  background: var(--accent-08);
+}
+
+.ohf-doc-body {
+  max-width: 860px;
+  margin: 0 auto;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--tx2);
+}
+
+.ohf-doc-body h1,
+.ohf-doc-body h2,
+.ohf-doc-body h3 {
+  color: var(--tx);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  scroll-margin-top: 72px;
+}
+
+.ohf-doc-body h1 {
+  font-size: 30px;
+  margin: 28px 0 12px;
+}
+
+.ohf-doc-body h2 {
+  font-size: 21px;
+  margin: 48px 0 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.ohf-doc-body hr + h2 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.ohf-doc-body h3 {
+  font-size: 16px;
+  margin: 28px 0 8px;
+}
+
+.ohf-doc-anchor {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ohf-doc-anchor:hover::after {
+  content: " #";
+  color: var(--tx4);
+}
+
+.ohf-doc-body p {
+  margin: 0 0 12px;
+}
+
+.ohf-doc-body ul,
+.ohf-doc-body ol {
+  margin: 0 0 12px;
+  padding-left: 22px;
+}
+
+.ohf-doc-body li {
+  margin: 4px 0;
+}
+
+.ohf-doc-body li::marker {
+  color: var(--tx4);
+}
+
+.ohf-doc-body strong {
+  color: var(--tx);
+  font-weight: 600;
+}
+
+.ohf-doc-body a:not(.ohf-doc-anchor) {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.ohf-doc-body a:not(.ohf-doc-anchor):hover {
+  text-decoration: underline;
+}
+
+.ohf-doc-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.86em;
+  color: var(--tx);
+  background: var(--s2);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
+.ohf-doc-body pre {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  background: var(--s1);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.ohf-doc-body pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--tx2);
+}
+
+.ohf-doc-body hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+
+.ohf-doc-body blockquote {
+  margin: 0 0 12px;
+  padding: 2px 0 2px 14px;
+  border-left: 2px solid var(--accent-32);
+  color: var(--tx3);
+}
+
+.ohf-doc-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 20px;
+  font-size: 14px;
+}
+
+.ohf-doc-body th,
+.ohf-doc-body td {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ohf-doc-body th {
+  color: var(--tx);
+  font-weight: 600;
+  border-bottom-color: var(--line-2);
+}
+
+@media (max-width: 640px) {
+  .ohf-doc {
+    padding: 0 16px 72px;
+  }
+
+  .ohf-doc-body {
+    font-size: 14px;
+  }
+
+  .ohf-doc-body h1 {
+    font-size: 24px;
+  }
+
+  .ohf-doc-body table {
+    display: block;
+    overflow-x: auto;
+  }
+}
