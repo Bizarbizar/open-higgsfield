@@ -13,10 +13,11 @@ import { swatchFor } from "./artwork";
 import { AssetPicker } from "./asset-picker";
 import { PROMPT_PLACEHOLDERS, countSetting } from "./data";
 import type { RunRecord } from "./history";
-import { ArrowUpIcon, CaretDownIcon, CloseIcon, MinusIcon, PlusIcon, WarningIcon } from "./icons";
+import { ArrowUpIcon, CaretDownIcon, CloseIcon, MinusIcon, PlusIcon, SparkIcon, WarningIcon } from "./icons";
 import { MediaStrip, useMediaTray } from "./media-tray";
 import { ModelIcon, modelIconSrc } from "./model-icon";
 import { ModelPicker } from "./model-picker";
+import { PromptAssistant } from "./prompt-assistant";
 import { SettingPill, SettingPopover } from "./settings";
 
 /* Overlay ids: the two fixed panels, or one setting addressed by its catalog
@@ -24,6 +25,7 @@ import { SettingPill, SettingPopover } from "./settings";
    closed union. */
 const PICKER = "picker";
 const ASSETS = "assets";
+const ASSISTANT = "assistant";
 const SETTING = "setting:";
 
 const PROMPT_MAX_HEIGHT = 168;
@@ -37,7 +39,7 @@ const POPOVER_GAP = 8;
 
 /** Declared widths keep an opening popover inside the composer's own column. */
 function popoverWidth(id: string, model: ModelEntry): number {
-  if (id === PICKER || id === ASSETS) return 560;
+  if (id === PICKER || id === ASSETS || id === ASSISTANT) return 560;
   /* A list of an enum's values is the narrow panel; a slider needs its travel. */
   if (id.startsWith(SETTING) && model.settings[id.slice(SETTING.length)]?.type === "enum") {
     return 216;
@@ -259,6 +261,19 @@ export function Composer({
             onClose={() => setOverlay(null)}
           />
         )}
+        {overlay === ASSISTANT && (
+          <PromptAssistant
+            model={model}
+            currentPrompt={prompt.text}
+            hasStartFrame={tray.items.some((item) => item.role === "start")}
+            onInsert={(text) => {
+              prompt.setText(text);
+              setOverlay(null);
+              promptRef.current?.focus();
+            }}
+            onClose={() => setOverlay(null)}
+          />
+        )}
         {overlay === PICKER && (
           <ModelPicker
             selectedId={model.id}
@@ -325,6 +340,18 @@ export function Composer({
                   }
                 }}
               />
+
+              <button
+                type="button"
+                className="ohf-attach ohf-assist ohf-tip ohf-tip--end"
+                data-tip="Prompt assistant"
+                aria-label="Prompt assistant"
+                aria-expanded={overlay === ASSISTANT}
+                aria-haspopup="dialog"
+                onClick={(event) => toggle(ASSISTANT, event.currentTarget)}
+              >
+                <SparkIcon size={15} />
+              </button>
             </div>
 
             <div className="ohf-composer-row">

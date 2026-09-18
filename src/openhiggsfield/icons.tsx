@@ -315,3 +315,12 @@ export function BookIcon({ size = 15 }: IconProps) {
     </svg>
   );
 }
+
+export function SparkIcon({ size = 15 }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M8 2.2c.5 2.9 1.9 4.3 5.8 5.8-3.9 1.5-5.3 2.9-5.8 5.8-.5-2.9-1.9-4.3-5.8-5.8C6.1 6.5 7.5 5.1 8 2.2z" />
+      <path d="M12.6 1.6c.2 1.1.7 1.6 1.9 2.1-1.2.5-1.7 1-1.9 2.1-.2-1.1-.7-1.6-1.9-2.1 1.2-.5 1.7-1 1.9-2.1z" />
+    </svg>
+  );
+}

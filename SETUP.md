@@ -33,6 +33,7 @@ pnpm dev                   # http://localhost:3000
 | --- | --- | --- |
 | `HF_API_BASE_URL` | `https://platform.higgsfield.ai` (fonctionne ; la doc récente indique `https://api.higgsfield.ai`, même API) | Oui |
 | `OPEN_HIGGSFIELD_READ_WRITE_TOKEN` | Token **Vercel Blob** read-write (Vercel → Storage → Blob → créer un store) | Seulement pour uploader des médias d'entrée (start/end frame, références). Text-to-image et text-to-video tournent sans. |
+| `ANTHROPIC_API_KEY` | Clé API Anthropic (console.anthropic.com) | Seulement pour l'onglet « From a brief » et « Polish with AI » de l'assistant de prompt. L'onglet « Build » (formulaire) fonctionne sans. Chaque appel coûte quelques centimes (Claude Opus 5). |
 
 Higgsfield doit pouvoir **télécharger** les médias d'entrée, donc ils doivent
 être sur une URL publique — Vercel Blob s'en charge ; un serveur local ne suffit pas.
@@ -105,6 +106,19 @@ Au 19/09/2026, **Soul Cinema, DoP, Flux 2 et Flux 3** n'ont plus de page dans la
 console ni de résultat de recherche. Ils sont conservés dans le catalogue faute
 d'un test qui confirme l'échec ; à retirer (comme Veo 3.1 / Nano Banana avant eux)
 si une génération renvoie 404.
+
+## Assistant de prompt (composer → icône étincelle)
+
+Deux onglets. **Build** : un formulaire par bloc (sujet, action, décor,
+lumière, caméra, style, son, contraintes) dont les champs obligatoires /
+masqués dépendent du modèle sélectionné (`src/prompting/profiles.ts`, dérivé de
+`PROMPTS.md` §3–4) ; le prompt est assemblé en direct (`assemble.ts`) puis
+inséré dans le composer. **From a brief** : un brief libre (toute langue) →
+Claude rédige le prompt anglais final avec le méta-prompt de `PROMPTS.md` §5
+plus la fiche du modèle (`src/prompting/actions.ts`, nécessite
+`ANTHROPIC_API_KEY`). « Polish with AI » envoie les champs du formulaire au
+même circuit. Pour ajuster les règles d'un modèle : éditer son profil dans
+`profiles.ts`, et garder `PROMPTS.md` cohérent.
 
 ## Guide des modèles
 

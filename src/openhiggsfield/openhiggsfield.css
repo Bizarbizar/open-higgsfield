@@ -2670,6 +2670,199 @@
   height: 30px;
 }
 
+/* ---------- prompt assistant ---------- */
+
+/* The assistant is the rules of PROMPTS.md made into a form: fields per block
+   the target model listens to, its own tips alongside, the assembled prompt
+   below. It opens off the spark at the end of the prompt line. */
+.ohf-assist {
+  margin-left: 2px;
+}
+.ohf-assist[aria-expanded="true"] {
+  color: var(--accent);
+  border-color: var(--accent-32);
+}
+.ohf-popover--assistant {
+  width: min(560px, 100%);
+  max-height: min(78vh, 720px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ohf-assistant-model {
+  margin-left: auto;
+  margin-right: 6px;
+  font-size: 11.5px;
+  color: var(--tx3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ohf-assistant-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 0;
+  min-height: 0;
+  overflow-y: auto;
+  border-bottom: 1px solid var(--line);
+}
+.ohf-assistant-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 12px 14px;
+  border-right: 1px solid var(--line);
+}
+.ohf-assistant-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ohf-assistant-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--tx3);
+}
+.ohf-assistant-req {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.ohf-assistant-input {
+  width: 100%;
+  resize: vertical;
+  min-height: 34px;
+  padding: 7px 9px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--tx);
+  background: var(--s1);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.ohf-assistant-input::placeholder {
+  color: var(--tx4);
+}
+.ohf-assistant-input:focus-visible {
+  border-color: var(--accent-32);
+}
+.ohf-assistant-input:disabled {
+  opacity: 0.5;
+}
+.ohf-assistant-input--brief {
+  min-height: 140px;
+}
+.ohf-assistant-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--tx3);
+}
+.ohf-assistant-hint code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--tx2);
+}
+.ohf-assistant-side {
+  padding: 6px 12px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--tx2);
+}
+.ohf-assistant-side .ohf-pop-head {
+  padding-left: 0;
+  padding-right: 0;
+}
+.ohf-assistant-tips {
+  margin: 0 0 6px;
+  padding-left: 16px;
+}
+.ohf-assistant-tips li {
+  margin: 3px 0;
+}
+.ohf-assistant-tips li::marker {
+  color: var(--tx4);
+}
+.ohf-assistant-tip--strong {
+  color: var(--accent);
+}
+.ohf-assistant-example {
+  margin: 0 0 8px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--tx3);
+  font-style: italic;
+}
+.ohf-assistant-preview {
+  padding: 8px 12px 10px;
+  border-bottom: 1px solid var(--line);
+  background: var(--s1);
+}
+.ohf-assistant-preview-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.ohf-assistant-preview .ohf-pop-head {
+  padding: 0;
+}
+.ohf-assistant-count {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--tx4);
+}
+.ohf-assistant-count[data-state="ok"] {
+  color: var(--tx3);
+}
+.ohf-assistant-count[data-state="long"],
+.ohf-assistant-count[data-state="short"] {
+  color: var(--danger);
+}
+.ohf-assistant-preview-text {
+  margin: 4px 0 0;
+  max-height: 120px;
+  overflow-y: auto;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--tx);
+}
+.ohf-assistant-empty {
+  color: var(--tx4);
+}
+.ohf-assistant-note {
+  margin: 6px 0 0;
+  font-size: 11.5px;
+  color: var(--tx3);
+}
+.ohf-assistant-error {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--danger);
+}
+.ohf-assistant-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+@media (max-width: 640px) {
+  .ohf-assistant-body {
+    grid-template-columns: 1fr;
+  }
+  .ohf-assistant-form {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
 /* ---------- asset picker ---------- */
 
 /* Inputs come from two shelves — files this browser sent to Blob, and the runs
