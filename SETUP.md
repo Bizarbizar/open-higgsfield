@@ -109,8 +109,12 @@ si une génération renvoie 404.
 ## Guide des modèles
 
 `MODELS.md` décrit, pour chaque modèle du catalogue, sa singularité et son usage
-prioritaire, avec un tableau « Choisir vite » par besoin. À mettre à jour à
-chaque ajout ou retrait de modèle.
+prioritaire, avec un tableau « Choisir vite » par besoin. `PROMPTS.md` donne la
+structure de prompt idéale (générique + variantes par modèle), un gabarit JSON,
+une grille « quoi demander à l'utilisateur » et un méta-prompt pour LLM — base
+d'un futur générateur de prompts. Les deux sont servis dans l'app sous
+`/docs/models` et `/docs/prompts`. À mettre à jour à chaque ajout ou retrait de
+modèle.
 
 ## Fichiers générés par `next dev`
 
