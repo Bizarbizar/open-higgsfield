@@ -7,6 +7,7 @@ type Mapper = (plane: GenerationPlane) => Mapped;
 const MAP: Record<string, Mapper> = {
   "soul-cinema": (plane) => mapSoul(plane, "higgsfield-ai/soul/cinema"),
   "soul-2": (plane) => mapSoul(plane, "higgsfield-ai/soul/v2/standard"),
+  "marketing-studio-image": mapMarketingStudio,
   "kling-3-turbo": mapKlingTurbo,
   "kling-3-std": (plane) => mapKling3(plane, "kling-video/v3.0/std"),
   "kling-3-pro": (plane) => mapKling3(plane, "kling-video/v3.0/pro"),
@@ -41,6 +42,21 @@ function mapSoul(plane: GenerationPlane, path: string): Mapped {
       resolution: plane.settings.resolution,
       aspect_ratio: plane.settings.aspectRatio,
       enhance_prompt: plane.settings.enhancePrompt,
+    },
+  };
+}
+
+function mapMarketingStudio(plane: GenerationPlane): Mapped {
+  const refs = urls(plane, "reference");
+  return {
+    path: "marketing-studio/image",
+    body: {
+      prompt: plane.prompt.text,
+      resolution: plane.settings.resolution,
+      aspect_ratio: plane.settings.aspectRatio,
+      quality: plane.settings.quality,
+      enhance_prompt: false,
+      ...(refs.length ? { image_urls: refs } : {}),
     },
   };
 }

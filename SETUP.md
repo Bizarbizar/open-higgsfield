@@ -63,11 +63,14 @@ catalogue local et ce que l'API accepte réellement (voir ci-dessous).
 Le catalogue (`src/generation/catalog/`) est écrit à la main, il n'est pas
 synchronisé avec l'API. Deux conséquences :
 
-1. **Modèles absents** — ex. *Marketing Studio Image* existe côté API
+1. **Modèles absents** — *Marketing Studio Image* est maintenant ajouté
    (`POST /marketing-studio/image`, résolution `1k|2k|4k`, ratio
-   `auto|1:1|3:2|2:3|4:3|3:4|16:9|9:16|21:9`, `quality low|medium|high`, mode
-   presets via `GET /marketing-studio/image/presets`) mais pas ici. À ajouter :
-   un fichier catalogue + un mapping dans `to-platform.ts`.
+   `auto|1:1|3:2|2:3|4:3|3:4|16:9|9:16|21:9`, `quality low|medium|high`,
+   jusqu'à 16 `image_urls` en référence pour l'édition), en **mode direct
+   uniquement** : `enhance_prompt` reste à `false`. Le mode enhanced exige un
+   `preset_id` tiré d'un catalogue paginé (`GET /marketing-studio/image/presets`),
+   géré dans leur CMS — pas représentable en enum statique, à faire plus tard si
+   besoin. Référence : console.higgsfield.ai → modèle → onglet *API*.
 2. **Réglages faux** — `videoModel()` dans `defaults.ts` donne à tous les modèles
    vidéo génériques `720p/1080p`, ratio `16:9|9:16|1:1`, durée 4–10 s. Ce n'est
    pas ce que chaque modèle accepte.
