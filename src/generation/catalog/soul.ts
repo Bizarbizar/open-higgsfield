@@ -23,3 +23,11 @@ export const soul2: ModelEntry = {
   roles: {},
   settings: soulSettings,
 };
+
+export const soulStandard: ModelEntry = {
+  id: "soul-standard",
+  surface: "image",
+  label: "Soul Standard",
+  roles: {},
+  settings: soulSettings,
+};

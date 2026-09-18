@@ -7,7 +7,12 @@ type Mapper = (plane: GenerationPlane) => Mapped;
 const MAP: Record<string, Mapper> = {
   "soul-cinema": (plane) => mapSoul(plane, "higgsfield-ai/soul/cinema"),
   "soul-2": (plane) => mapSoul(plane, "higgsfield-ai/soul/v2/standard"),
+  "soul-standard": (plane) => mapSoul(plane, "higgsfield-ai/soul/standard"),
   "marketing-studio-image": mapMarketingStudio,
+  "genjutsu-motion-transfer": (plane) => mapGenjutsu(plane, "higgsfiled/genjutsu/motion-transfer/v1.0"),
+  "genjutsu-object-swap": (plane) => mapGenjutsu(plane, "higgsfiled/genjutsu/object-swap/v1.0"),
+  "kling-2.5": (plane) => mapKling25(plane, "kling-video/v2.5-turbo/standard"),
+  "kling-2.5-pro": (plane) => mapKling25(plane, "kling-video/v2.5-turbo/pro"),
   "kling-3-turbo": mapKlingTurbo,
   "kling-3-std": (plane) => mapKling3(plane, "kling-video/v3.0/std"),
   "kling-3-pro": (plane) => mapKling3(plane, "kling-video/v3.0/pro"),
@@ -59,6 +64,31 @@ function mapMarketingStudio(plane: GenerationPlane): Mapped {
       ...(refs.length ? { image_urls: refs } : {}),
     },
   };
+}
+
+function mapGenjutsu(plane: GenerationPlane, path: string): Mapped {
+  const video = urls(plane, "video")[0];
+  const refs = urls(plane, "reference");
+  return {
+    path,
+    body: {
+      prompt: plane.prompt.text,
+      resolution: plane.settings.resolution,
+      ...(video ? { video_url: video } : {}),
+      ...(refs.length ? { image_urls: refs } : {}),
+    },
+  };
+}
+
+function mapKling25(plane: GenerationPlane, prefix: string): Mapped {
+  const start = urls(plane, "start")[0];
+  const body: Record<string, unknown> = {
+    prompt: plane.prompt.text,
+    duration: plane.settings.duration,
+    cfg_scale: plane.settings.cfgScale,
+  };
+  if (start) return { path: `${prefix}/image-to-video`, body: { ...body, image_url: start } };
+  return { path: `${prefix}/text-to-video`, body };
 }
 
 function mapKlingTurbo(plane: GenerationPlane): Mapped {

@@ -76,6 +76,8 @@ synchronisé avec l'API. Deux conséquences :
    pas ce que chaque modèle accepte.
    - **MiniMax H3** corrigé : `2K` uniquement, ratio
      `auto|adaptive|21:9|16:9|4:3|1:1|3:4|9:16`, durée 5–15 s.
+   - **Kling 2.5 Turbo** (Standard + Pro) corrigé : `duration 5|10`, `cfg_scale 0–1`,
+     pas de ratio ni de résolution.
    - **Non audités** : Hailuo 2.3, Wan 2.6/2.7/3, LTX, PixVerse, Grok, Happy
      Horse… Même méthode : comparer avec la page playground du modèle sur
      console.higgsfield.ai (les modèles ne sont pas tous dans docs.higgsfield.ai
@@ -85,6 +87,24 @@ synchronisé avec l'API. Deux conséquences :
 valeur mémorisée en localStorage n'est plus valide après une correction de
 catalogue, elle retombe sur le défaut au lieu de casser le composer. Le serveur
 reste strict.
+
+## Modèles ajoutés le 19/09/2026 (source : console.higgsfield.ai)
+
+Soul Standard, Genjutsu Motion Transfer, Genjutsu Object Swap
+(`higgsfiled/genjutsu/...` — la faute est dans le chemin officiel), Kling 2.5
+Turbo Pro. Genjutsu prend 1 vidéo source obligatoire + jusqu'à 8 images, et
+facture à la seconde de vidéo d'entrée.
+
+Hors périmètre : la section « Workflows & agents » de la console (Product shots,
+Graphic ads, Marketplace design, Cinema Studio 4.0) — pipelines multi-étapes,
+pas des modèles à requête unique.
+
+## Modèles probablement retirés de l'API
+
+Au 19/09/2026, **Soul Cinema, DoP, Flux 2 et Flux 3** n'ont plus de page dans la
+console ni de résultat de recherche. Ils sont conservés dans le catalogue faute
+d'un test qui confirme l'échec ; à retirer (comme Veo 3.1 / Nano Banana avant eux)
+si une génération renvoie 404.
 
 ## Fichiers générés par `next dev`
 
