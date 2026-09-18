@@ -106,6 +106,12 @@ console ni de résultat de recherche. Ils sont conservés dans le catalogue faut
 d'un test qui confirme l'échec ; à retirer (comme Veo 3.1 / Nano Banana avant eux)
 si une génération renvoie 404.
 
+## Guide des modèles
+
+`MODELS.md` décrit, pour chaque modèle du catalogue, sa singularité et son usage
+prioritaire, avec un tableau « Choisir vite » par besoin. À mettre à jour à
+chaque ajout ou retrait de modèle.
+
 ## Fichiers générés par `next dev`
 
 `AGENTS.md`, `CLAUDE.md` et le contenu de `next-env.d.ts` sont réécrits par
