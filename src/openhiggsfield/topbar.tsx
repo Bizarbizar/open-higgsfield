@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { VIEWS, VIEW_LABELS, type GalleryView } from "./data";
+import { DocsMenu } from "./docs-menu";
 import { AssetsIcon, HeartIcon, ImageIcon, KeyIcon, VideoIcon } from "./icons";
 
 const VIEW_ICONS: Record<GalleryView, () => React.ReactNode> = {
@@ -137,6 +138,7 @@ export function Topbar({
           <span className="ohf-key-text">{keyConfigured ? "Your key" : "Add key"}</span>
           <span className="ohf-lamp" />
         </button>
+        <DocsMenu />
       </div>
     </div>
   );

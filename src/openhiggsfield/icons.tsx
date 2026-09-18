@@ -307,3 +307,11 @@ export function WaveBadgeIcon({ size = 12 }: IconProps) {
     </svg>
   );
 }
+
+export function BookIcon({ size = 15 }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M2.5 3.2h4.2c.8 0 1.3.5 1.3 1.3v8.3c0-.7-.6-1.1-1.3-1.1H2.5zM13.5 3.2H9.3c-.8 0-1.3.5-1.3 1.3v8.3c0-.7.6-1.1 1.3-1.1h4.2z" />
+    </svg>
+  );
+}
