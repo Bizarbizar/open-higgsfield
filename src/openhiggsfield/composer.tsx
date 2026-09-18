@@ -83,7 +83,7 @@ export function Composer({
   const videoPrompt = useVideoPrompt();
   const prompt = surface === "image" ? imagePrompt : videoPrompt;
   const settings = useSettings();
-  const values = parseSettings(model, settings.byModel[model.id] ?? {});
+  const values = parseSettings(model, settings.byModel[model.id] ?? {}, { lenient: true });
   const tray = useMediaTray(model, onError);
 
   const [overlay, setOverlay] = useState<string | null>(null);

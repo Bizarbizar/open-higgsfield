@@ -23,6 +23,6 @@ export function assemblePlane(): GenerationPlane {
     model: model.id,
     prompt: { text },
     media,
-    settings: parseSettings(model, useSettings.getState().byModel[model.id] ?? {}),
+    settings: parseSettings(model, useSettings.getState().byModel[model.id] ?? {}, { lenient: true }),
   };
 }
