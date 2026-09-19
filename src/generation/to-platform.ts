@@ -9,6 +9,7 @@ const MAP: Record<string, Mapper> = {
   "soul-2": (plane) => mapSoul(plane, "higgsfield-ai/soul/v2/standard"),
   "soul-standard": (plane) => mapSoul(plane, "higgsfield-ai/soul/standard"),
   "marketing-studio-image": mapMarketingStudio,
+  "ideogram-4": mapIdeogram,
   "genjutsu-motion-transfer": (plane) => mapGenjutsu(plane, "higgsfiled/genjutsu/motion-transfer/v1.0"),
   "genjutsu-object-swap": (plane) => mapGenjutsu(plane, "higgsfiled/genjutsu/object-swap/v1.0"),
   "kling-2.5": (plane) => mapKling25(plane, "kling-video/v2.5-turbo/standard"),
@@ -62,6 +63,19 @@ function mapMarketingStudio(plane: GenerationPlane): Mapped {
       quality: plane.settings.quality,
       enhance_prompt: false,
       ...(refs.length ? { image_urls: refs } : {}),
+    },
+  };
+}
+
+function mapIdeogram(plane: GenerationPlane): Mapped {
+  const image = urls(plane, "reference")[0];
+  return {
+    path: "ideogram/v4.0",
+    body: {
+      prompt: plane.prompt.text,
+      aspect_ratio: plane.settings.aspectRatio,
+      rendering_speed: plane.settings.renderingSpeed,
+      ...(image ? { image_url: image, image_weight: plane.settings.imageWeight } : {}),
     },
   };
 }
@@ -150,6 +164,8 @@ function mapByPaths(plane: GenerationPlane, spec: PlatformPaths): Mapped {
     ...(plane.settings.aspectRatio ? { aspect_ratio: plane.settings.aspectRatio } : {}),
     ...(plane.settings.resolution ? { resolution: plane.settings.resolution } : {}),
     ...(typeof plane.settings.duration === "number" ? { duration: plane.settings.duration } : {}),
+    ...(plane.settings.quality ? { quality: plane.settings.quality } : {}),
+    ...(plane.settings.outputFormat ? { output_format: plane.settings.outputFormat } : {}),
   };
   if (spec.firstLast && (start || end)) {
     return {

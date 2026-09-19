@@ -26,7 +26,7 @@ import { minimaxH3 } from "./minimax-h3";
 import { minimaxHailuo23 } from "./minimax-hailuo-2.3";
 import { parseSettings } from "./parse-settings";
 import { pixverse6 } from "./pixverse-6";
-import { qwenImage3 } from "./qwen-image-3";
+import { qwenImage3, qwenImage3Edit } from "./qwen-image-3";
 import { recraft41 } from "./recraft-4.1";
 import { seedance2, seedance2Fast, seedance2Mini } from "./seedance-2";
 import { seedance25, seedance25Edit, seedance25Extend } from "./seedance-2.5";
@@ -60,6 +60,7 @@ export const MODELS: readonly ModelEntry[] = [
   ideogram4,
   recraft41,
   qwenImage3,
+  qwenImage3Edit,
   zImageTurbo,
   wan3,
   wan3Prime,

@@ -141,6 +141,7 @@ const IDEOGRAM: PromptProfile = {
     "Put the on-screen text in double quotes, early, short, Latin letters without accents.",
     "Describe the typeface concretely: “bold condensed sans-serif”, “formal script with flourishes”.",
     "Keep the background simple behind the lettering; under 150 words.",
+    "One optional input image; Image weight (1–100) sets how much of it survives.",
   ],
   example:
     "A vintage travel poster with the words \"RIDE FREE\" in bold condensed sans-serif across the top and \"Coastal Route 1\" in a small script line at the bottom. A woman on a bicycle on a countryside road, rolling hills, late-afternoon sun, flat retro color blocks in teal, mustard and cream, centered composition with generous margins.",
@@ -178,11 +179,24 @@ const QWEN: PromptProfile = {
   ],
 };
 
+const QWEN_EDIT: PromptProfile = {
+  blocks: states({ action: "required", constraints: "required", subject: "optional", style: "optional", sound: "hidden" }, "hidden"),
+  words: [20, 60],
+  tips: [
+    "Editing instruction, English: “Replace the floor logo with the logo from image 2.”",
+    "Number the references in tray order (image 1, image 2, image 3) and say what each one is for.",
+    "Lock the rest explicitly: “Keep the people, poses, set and lighting exactly as in image 1.”",
+  ],
+  example:
+    "Replace the round floor emblem in image 1 with the logo from image 2, same size and position, flat on the floor. Keep the three fighters, their poses, clothing, the set and the lighting exactly as in image 1. No additional text.",
+  hints: { action: "The change to make, naming the images by number", constraints: "What must stay exactly as in image 1" },
+};
+
 const ZIMAGE: PromptProfile = {
   ...GENERIC_IMAGE,
   blocks: states({ subject: "required", setting: "required", lighting: "required", sound: "hidden" }, "optional"),
   words: [20, 50],
-  tips: ["Fast model: one subject, one setting, one light. Do not over-specify."],
+  tips: ["Fast model: one subject, one setting, one light. Do not over-specify.", "Hard API limit: 800 characters."],
 };
 
 const GROK_IMAGE: PromptProfile = {
@@ -365,6 +379,7 @@ const BY_ID: Record<string, PromptProfile> = {
   "ideogram-4": IDEOGRAM,
   "recraft-4.1": RECRAFT,
   "qwen-image-3": QWEN,
+  "qwen-image-3-edit": QWEN_EDIT,
   "z-image-turbo": ZIMAGE,
   "grok-imagine-2": GROK_IMAGE,
   "seedance-2.5": SEEDANCE,

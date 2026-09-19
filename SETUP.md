@@ -102,10 +102,27 @@ pas des modèles à requête unique.
 
 ## Modèles probablement retirés de l'API
 
-Au 19/09/2026, **Soul Cinema, DoP, Flux 2 et Flux 3** n'ont plus de page dans la
-console ni de résultat de recherche. Ils sont conservés dans le catalogue faute
-d'un test qui confirme l'échec ; à retirer (comme Veo 3.1 / Nano Banana avant eux)
-si une génération renvoie 404.
+Au 19/09/2026, **Soul Cinema, DoP et Flux 3** n'ont plus de page dans la console
+ni de résultat de recherche. Ils sont conservés dans le catalogue faute d'un test
+qui confirme l'échec ; à retirer (comme Veo 3.1 / Nano Banana avant eux) si une
+génération renvoie 404. **Flux 2** est aussi absent de la console mais fonctionne
+(références comprises) : la console n'est donc pas exhaustive.
+
+## Modèles image : qui lit vraiment les références (audit du 19/09/2026)
+
+Le helper `imageModel()` donnait 8 références à tous les modèles image et
+`mapByPaths` les envoyait en `image_urls` — que l'endpoint les accepte ou non.
+L'API répond 200 et ignore le champ : le modèle génère sans voir les images.
+Corrigé d'après les schémas de la console :
+
+| Modèle | Images d'entrée | Notes |
+| --- | --- | --- |
+| Marketing Studio Image | `image_urls` ×16 | |
+| Flux 2 | oui | constaté |
+| Grok Imagine 2.0 | `image_urls` | résolution 1k/2k, `quality low|medium` |
+| Ideogram 4.0 | **une** `image_url` + `image_weight` | pas de `resolution` ; `rendering_speed` |
+| Qwen Image 3 Edit (nouveau) | `image_urls` ×1–3 **obligatoires** | `alibaba/qwen-image-3/edit` |
+| Qwen Image 3, Recraft 4.1, Z-Image Turbo, Soul | **aucune** | tray masqué ; Recraft 1k seul ; Z-Image prompt ≤ 800 car. |
 
 ## Assistant de prompt (composer → icône étincelle)
 

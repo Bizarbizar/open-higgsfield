@@ -38,40 +38,55 @@ Vocabulaire des entrées : **start** = image de départ (first frame),
   d'entrée sous ~4 000 px / quelques Mo.
 
 ### Grok Imagine 2.0 — `grok-imagine-2`
-- **Singularité** : modèle image de xAI, texte → image uniquement, résolution
-  1k/2k/4k ; orienté rendu contemporain, saturé, très « réseaux sociaux ».
+- **Singularité** : modèle image de xAI qui **lit des images de référence**
+  (`image_urls`), résolution 1k/2k, qualité low/medium ; orienté rendu
+  contemporain, saturé, très « réseaux sociaux ».
 - **Usage prioritaire** : visuels punchy pour le social, concepts rapides,
   illustrations pop.
 
 ### Ideogram 4.0 — `ideogram-4`
 - **Singularité** : référence du **texte dans l'image** (lettrage, titres,
-  affiches) avec une typographie lisible et bien intégrée.
+  affiches) avec une typographie lisible et bien intégrée. Accepte **une**
+  image d'entrée avec un poids (*Image weight* 1–100) ; pas de réglage de
+  résolution, vitesse TURBO/DEFAULT/QUALITY.
 - **Usage prioritaire** : affiches, couvertures, mockups avec slogan ou nom de
   marque écrit dans l'image, logos exploratoires.
 
 ### Recraft 4.1 — `recraft-4.1`
 - **Singularité** : orienté **design graphique** — illustration vectorielle,
-  icônes, flat design, styles cohérents et propres.
+  icônes, flat design, styles cohérents et propres. **Texte seul** (aucune
+  image d'entrée), 1k uniquement, sortie png/jpg/webp.
 - **Usage prioritaire** : illustrations d'interface, pictogrammes, identités
   visuelles, visuels à contours nets destinés à être retravaillés.
 
 ### Qwen Image 3 — `qwen-image-3`
 - **Singularité** : modèle image d'Alibaba, bon suivi de prompts longs et
-  descriptifs, compositions complexes à plusieurs éléments.
+  descriptifs, compositions complexes à plusieurs éléments. **Texte seul** :
+  ce endpoint ignore toute image ; pour éditer, utiliser Qwen Image 3 Edit.
 - **Usage prioritaire** : scènes détaillées dictées par un brief précis,
   infographies illustrées, quand le prompt est long.
 
+### Qwen Image 3 Edit — `qwen-image-3-edit`
+- **Singularité** : **édition guidée par 1 à 3 images** (obligatoires), en
+  anglais ou chinois : remplacer un élément, changer un décor, fusionner deux
+  références en gardant le reste. 1k/2k.
+- **Usage prioritaire** : « garde la photo, remplace le logo / la tenue /
+  le fond » — l'alternative à Marketing Studio quand le sujet n'est pas un
+  produit.
+
 ### Z-Image Turbo — `z-image-turbo`
 - **Singularité** : le plus **rapide** du catalogue image, qualité correcte,
-  peu de réglages.
+  peu de réglages. **Texte seul**, prompt limité à **800 caractères** par
+  l'API (au-delà : 400 « too long »).
 - **Usage prioritaire** : brouillons, exploration de dizaines de variantes,
   placeholders — avant de refaire la finale avec un modèle plus fin.
 
-### Flux 2 — `flux-2` ⚠️
-- **Singularité** : Black Forest Labs, réputé pour la fidélité au prompt et le
-  photoréalisme équilibré. **N'apparaît plus dans la console Higgsfield** au
-  19/09/2026 — peut échouer.
-- **Usage prioritaire** : photoréalisme généraliste — si toujours servi.
+### Flux 2 — `flux-2`
+- **Singularité** : Black Forest Labs, fidélité au prompt et photoréalisme
+  équilibré ; **lit des images de référence** (constaté en production le
+  19/09/2026, bien qu'absent de la console).
+- **Usage prioritaire** : photoréalisme généraliste, déclinaisons à partir de
+  références.
 
 ---
 
@@ -239,8 +254,9 @@ Voir la section précédente : transfert de mouvement image + clip.
 
 | Besoin | Premier choix | Alternative |
 | --- | --- | --- |
-| Portrait / photo réaliste pas chère | Soul 2 | Flux 2 (si servi) |
-| Visuel pub avec produit + logo | Marketing Studio Image | Ideogram 4.0 |
+| Portrait / photo réaliste pas chère | Soul 2 | Flux 2 |
+| Visuel pub avec produit + logo | Marketing Studio Image | Flux 2 |
+| Modifier une photo en gardant les gens | Qwen Image 3 Edit | Marketing Studio Image |
 | Texte lisible dans l'image | Ideogram 4.0 | Recraft 4.1 |
 | Illustration vectorielle / icônes | Recraft 4.1 | Grok Imagine 2.0 |
 | Explorer 50 variantes en 2 min | Z-Image Turbo | LTX 2.5 Fast (vidéo) |
