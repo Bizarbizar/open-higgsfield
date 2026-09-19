@@ -157,9 +157,19 @@ export function MediaStrip({ model }: { model: ModelEntry }) {
   const items = media.items.filter((item) => model.roles[item.role]);
   if (items.length === 0) return null;
 
+  /* The platform gets each role as an ordered list, and the prompt can only
+     point at an image by its position — so a role that takes several shows
+     the number the model will know it by. */
+  const seen: Partial<Record<MediaRole, number>> = {};
+  const numbered = items.map((item) => {
+    const index = (seen[item.role] ?? 0) + 1;
+    seen[item.role] = index;
+    return { item, index: (model.roles[item.role] ?? 0) > 1 ? index : null };
+  });
+
   return (
     <ul className="ohf-strip">
-      {items.map((item) => (
+      {numbered.map(({ item, index }) => (
         <li key={item.id} className="ohf-strip-item">
           <span className="ohf-strip-tile">
             {item.role === "audio" || item.role === "video" ? (
@@ -179,12 +189,15 @@ export function MediaStrip({ model }: { model: ModelEntry }) {
                 }}
               />
             )}
-            <span className="ohf-strip-tag">{ROLE_TAGS[item.role]}</span>
+            <span className="ohf-strip-tag">
+              {ROLE_TAGS[item.role]}
+              {index !== null && <span className="ohf-strip-num">{index}</span>}
+            </span>
           </span>
           <button
             type="button"
             className="ohf-strip-remove"
-            aria-label={`Remove ${ROLE_LABELS[item.role].toLowerCase()}`}
+            aria-label={`Remove ${ROLE_LABELS[item.role].toLowerCase()}${index !== null ? ` ${index}` : ""}`}
             onClick={() => media.remove(item.id)}
           >
             <CloseIcon size={10} />

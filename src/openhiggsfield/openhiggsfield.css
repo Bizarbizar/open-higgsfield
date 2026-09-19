@@ -1387,6 +1387,17 @@
   color: #edf2f0;
   background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.74));
 }
+.ohf-strip-num {
+  margin-left: 3px;
+  padding: 0 4px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-ink);
+  background: var(--accent);
+}
 .ohf-strip-remove {
   position: absolute;
   top: -6px;
