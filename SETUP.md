@@ -147,6 +147,30 @@ d'un futur générateur de prompts. Les deux sont servis dans l'app sous
 `/docs/models` et `/docs/prompts`. À mettre à jour à chaque ajout ou retrait de
 modèle.
 
+## État au 19/09/2026 (soir) et fils ouverts
+
+Fait : catalogue audité contre la console (44 modèles ; Marketing Studio,
+Soul Standard, Genjutsu ×2, Kling 2.5 Turbo Pro, Qwen Image 3 Edit ajoutés ;
+MiniMax H3, Kling 2.5, Grok, Ideogram, Recraft, Qwen, Z-Image corrigés),
+guides `MODELS.md` / `PROMPTS.md` servis sous `/docs/*` et menu « Guides »,
+assistant de prompt (Build + IA), vignettes numérotées. Fork :
+github.com/Bizarbizar/open-higgsfield (`origin`), amont `wide-trace` en `upstream`.
+
+À faire / à décider :
+- `ANTHROPIC_API_KEY` dans `.env` pour activer « From a brief » et « Polish with
+  AI » — le chemin IA de l'assistant n'a pas encore été testé de bout en bout.
+- Soul Cinema, DoP, Flux 3 : absents de la console, jamais testés → tester une
+  génération et retirer si 404.
+- Marketing Studio mode *enhanced* (presets via `GET /marketing-studio/image/presets`).
+- Réordonner les références par glisser-déposer dans le plateau (aujourd'hui :
+  retirer / rajouter pour changer l'ordre).
+- Modèles vidéo « non audités » (Hailuo 2.3, Wan, LTX, PixVerse, Grok Video,
+  Happy Horse, Kling 2.6/O1/O3) : vérifier leurs réglages réels comme pour H3.
+- « Workflows & agents » de la console (Product shots, Graphic ads, Cinema
+  Studio 4.0) : hors périmètre pour l'instant.
+
+Session Claude Code : https://claude.ai/code/session_012NABabbcX15cE95nYfoEt7
+
 ## Fichiers générés par `next dev`
 
 `AGENTS.md`, `CLAUDE.md` et le contenu de `next-env.d.ts` sont réécrits par
